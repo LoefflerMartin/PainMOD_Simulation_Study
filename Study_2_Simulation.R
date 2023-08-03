@@ -127,6 +127,7 @@ for (S in n_subjects_min:n_subjects_max) {
 
 
 
+# PLOT RESULTS
 
 theme_set(theme_minimal())
 DATA <- DATA %>%  mutate(S = factor(S))
