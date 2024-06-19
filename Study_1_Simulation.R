@@ -10,12 +10,11 @@ lapply(packs, require, character.only=TRUE); rm(packs)
 
 # DEFINE PARAMETERS FOR SIMULATION
 h <- 0.8
-m <- 0.5
 l <- 0.1
 
-n_subjects_min <- 20
-n_subjects_max <- 200
-n_iterations <- 100
+n_subjects_min <- 30
+n_subjects_max <- 150
+n_iterations <- 1000
 
 
 # Simulation of data for work package 1
@@ -32,9 +31,9 @@ for (S in n_subjects_min:n_subjects_max) {
     
     # define covaraince matrix (upper right triangle)
     #         SIA_E SIA_C CPM_E CPM_C EIH_E EIH_C
-    rho <- c(       m,    l,    l,    l,    l,    #SIA_E
+    rho <- c(       h,    l,    l,    l,    l,    #SIA_E
                           l,    l,    l,    l,    #SIA_C
-                                m,    l,    l,    #CPM_E
+                                h,    l,    l,    #CPM_E
                                       l,    l,    #CPM_C
                                             h     #EIH_E
                                                   #EIH_C
@@ -48,7 +47,7 @@ for (S in n_subjects_min:n_subjects_max) {
 
     # adding the expected difference between control and experiemntal conditions, based on expected effect sizes
     # see formula 9 in https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3840331/ 
-    r_main <- m # expected correlation between E and C in SIA and CPM conditions
+    r_main <- h # expected correlation between E and C in SIA and CPM conditions
     d_main <- 0.5 # expected effect for the difference between (SIA_E and SIA_E) and (CPM_E and EIH_E) respectively
     d_noeffect <- 0.1 # a difference between EIH_C and EIH_E of 0 is unrealistic, so setting it to 0.1
     r_noeffect <- h # expected correlation between E and C in EIH condition
