@@ -8,3 +8,5 @@ Sample Size Estimation for Study 1 (=Work Package 1)
 Sample Size Estimation for Study 2 (=Work Package 2)
 
 Sample Size Estimation for Study 3 (=Work Package 3)
+
+<img src="https://github.com/LoefflerMartin/PainMOD_Simulation_Study/assets/95685062/cea45e03-c7e6-4d22-b579-e5a5170e0f83" width="500">
