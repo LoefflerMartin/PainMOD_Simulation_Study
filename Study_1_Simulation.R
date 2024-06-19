@@ -102,7 +102,7 @@ POWER <- DATA %>%
 required_n_95 <- min(POWER$S[POWER$Po > 0.95])
 required_n_80 <- min(POWER$S[POWER$Po > 0.80])
 
-ggplot(POWER, aes(x=S)) + 
+p <-ggplot(POWER, aes(x=S)) + 
   geom_area(aes(y = Po), fill = "#E69F00", 
             color = "#E69F00", alpha=0.5) +
   xlab("Number of Subjects") +
@@ -111,6 +111,10 @@ ggplot(POWER, aes(x=S)) +
   geom_hline(yintercept = 0.80, linetype = "dashed", col = "black") +
   geom_vline(xintercept = required_n_95, linetype = "dashed", col = "red") +
   geom_vline(xintercept = required_n_80, linetype = "dashed", col = "black")
+
+
+setwd("C:/Martin/Code/R/PainMOD_Simulation_Study")
+ggsave("Study_1_required_sample.png", p)
 
 toc()
 
