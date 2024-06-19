@@ -18,7 +18,7 @@ n_subjects_max <- 300
 n_iterations <- 1000
 
 
-# Simulation of data for work package 1
+# Simulation of data for work package 3
 DATA <- data.frame(Po=logical(), S=numeric())
 tic("overall the script took the time to run: ")
 
@@ -46,8 +46,7 @@ for (S in n_subjects_min:n_subjects_max) {
     # Control group
     suppressWarnings(rho_urt_con <- rnorm_multi(varnames = vars, S, length(vars), r = rho, empirical = F))
 
-    ######################
-    
+
     # subtracting the expected difference between control and experiemntal group from the control group, based on expected effect sizes
     # see formula 1 in https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3840331/
     d_main <- 0.5 # expected effect for the difference between EIH_C and EIH_E
@@ -62,15 +61,6 @@ for (S in n_subjects_min:n_subjects_max) {
     rho_urt_con$SIA <- rho_urt_con$SIA - d_noeffect
     rho_urt_con$CPM <- rho_urt_con$CPM - d_noeffect
 
-    
-    
-    # zu EIH control group d=.05 abziehen
-    # zu CPM/SIA in contorl group d=0.1 abziehen
-    # basierend auf Formel 1 in https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3840331/ 
-    # --> n in jeder iteration anpassen!
-    #####################
-    
-    
     
     # manipulate dataframe
     rho_urt_con$group <- "control"
