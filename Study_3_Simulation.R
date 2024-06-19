@@ -14,7 +14,7 @@ m <- 0.5
 l <- 0.1
 
 n_subjects_min <- 30
-n_subjects_max <- 300 # ATTENTION: In WP3 n is the n for EACH group!
+n_subjects_max <- 300
 n_iterations <- 1000
 
 
@@ -129,7 +129,7 @@ p <- ggplot(POWER, aes(x=S)) +
   geom_vline(xintercept = required_n_80, linetype = "dashed", col = "black")
 
 setwd("C:/Martin/Code/R/PainMOD_Simulation_Study")
-ggsave("Study_3_required_sample.png", p)
+ggsave("Study_3_required_sample.png", p, width = 4, height = 3)
 
 toc()
 

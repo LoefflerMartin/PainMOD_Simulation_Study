@@ -13,9 +13,9 @@ h <- 0.55
 m <- 0.35
 l <- 0.2
 n <- 0.1
-n_subjects_min <- 10
-n_subjects_max <- 150
-n_iterations <- 5000
+n_subjects_min <- 30
+n_subjects_max <- 300
+n_iterations <- 1000
 
 
 # Simulation of data for work package 2
@@ -128,7 +128,6 @@ for (S in n_subjects_min:n_subjects_max) {
 
 
 # PLOT RESULTS
-
 theme_set(theme_minimal())
 DATA <- DATA %>%  mutate(S = factor(S))
 POWER <- DATA %>%
@@ -140,7 +139,7 @@ POWER <- DATA %>%
 required_n_95 <- min(POWER$S[POWER$Po > 0.95])
 required_n_80 <- min(POWER$S[POWER$Po > 0.80])
 
-ggplot(POWER, aes(x=S)) + 
+p <- ggplot(POWER, aes(x=S)) + 
   geom_area(aes(y = Po), fill = "#E69F00", 
             color = "#E69F00", alpha=0.5) +
   xlab("Number of Subjects") +
@@ -149,6 +148,9 @@ ggplot(POWER, aes(x=S)) +
   geom_hline(yintercept = 0.80, linetype = "dashed", col = "black") +
   geom_vline(xintercept = required_n_95, linetype = "dashed", col = "red") +
   geom_vline(xintercept = required_n_80, linetype = "dashed", col = "black")
+
+setwd("C:/Martin/Code/R/PainMOD_Simulation_Study")
+ggsave("Study_2_required_sample.png", p, width = 4, height = 3)
 
 toc()
 

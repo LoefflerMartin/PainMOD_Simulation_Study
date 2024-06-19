@@ -13,7 +13,7 @@ h <- 0.8
 l <- 0.1
 
 n_subjects_min <- 30
-n_subjects_max <- 150
+n_subjects_max <- 300
 n_iterations <- 1000
 
 
@@ -114,7 +114,7 @@ p <-ggplot(POWER, aes(x=S)) +
 
 
 setwd("C:/Martin/Code/R/PainMOD_Simulation_Study")
-ggsave("Study_1_required_sample.png", p)
+ggsave("Study_1_required_sample.png", p, width = 4, height = 3)
 
 toc()
 
