@@ -116,7 +116,16 @@ p <- ggplot(POWER, aes(x=S)) +
   geom_hline(yintercept = 0.95, linetype = "dashed", col = "red") +
   geom_hline(yintercept = 0.80, linetype = "dashed", col = "black") +
   geom_vline(xintercept = required_n_95, linetype = "dashed", col = "red") +
-  geom_vline(xintercept = required_n_80, linetype = "dashed", col = "black")
+  geom_vline(xintercept = required_n_80, linetype = "dashed", col = "black") +
+  geom_label( label=paste("n80=\n", as.character(required_n_80), sep = ""), 
+              x=required_n_80, y=0.90, size =2,
+              label.padding = unit(0.55, "lines"), label.size = 0.35,
+              color = "black", fill="#69b3a2")+
+  geom_label( label=paste("n95=\n", as.character(required_n_95), sep = ""), 
+              x=required_n_95, y=1.05, size =2,
+              label.padding = unit(0.55, "lines"), label.size = 0.35,
+              color = "red", fill="#69b3a2")
+
 
 setwd("C:/Martin/Code/R/PainMOD_Simulation_Study")
 ggsave("Study_3_required_sample.png", p, width = 4, height = 3)
