@@ -33,42 +33,42 @@ for (S in n_subjects_min:n_subjects_max) {
     set.seed(i)
     
     # define covaraince matrix (upper right triangle)
-    #   DE1   DE2 DC1 DC2 DS1 DS2 IE1 IE2 IC1 IC2 IS1 IS2 TSK PCS FPQ vHISS AMAS HRE1 HRE2 HRC1 HRC2 HRS1 HRS2 HRVE1 HRVE2 HRVC1 HRVC2 HRVS1 HRVS2 RRE1 RRE2 RRC1 RRC2 RRS1 RRS2
-    rho <- c( h,  n,  n,  n,  n,  n,  n,  n,  n,  n,  n,  l,  n,  n,  n,    n,   h,   n,   n,   n,   n,   n,   n,    n,    n,    n,    n,    n,    h,   n,   n,   n,   n,   n,   # DE1
-              n,  n,  n,  n,  n,  n,  n,  n,  n,  n,  l,  n,  n,  n,    n,   n,   h,   n,   n,   n,   n,   n,    n,    n,    n,    n,    n,    n,   h,   n,   n,   n,   n,   # DE2
-              n,  n,  n,  n,  n,  h,  n,  n,  n,  n,  h,  h,  n,    n,   n,   n,   h,   n,   n,   n,   n,    n,    h,    n,    n,    n,    n,   n,   h,   n,   n,   n,   # DC1
-              n,  n,  n,  n,  n,  h,  n,  n,  n,  h,  h,  n,    n,   n,   n,   n,   h,   n,   n,   n,    n,    n,    h,    n,    n,    n,   n,   n,   h,   n,   n,   # DC2
-              n,  n,  n,  n,  n,  h,  n,  n,  n,  n,  h,    n,   n,   n,   n,   n,   h,   n,   n,    n,    n,    n,    h,    n,    n,   n,   n,   n,   h,   n,   # DS1
-              n,  n,  n,  n,  n,  h,  n,  n,  n,  n,    h,   n,   n,   n,   n,   n,   h,   n,    n,    n,    n,    n,    h,    n,   n,   n,   n,   n,   h,   # DS2
-              l,  l,  l,  l,  l,  m,  n,  n,  n,    n,   l,   n,   n,   n,   n,   n,   l,    n,    n,    n,    n,    n,    l,   n,   n,   n,   n,   n,   # IE1
-              l,  l,  l,  l,  m,  n,  n,  n,    n,   n,   l,   n,   n,   n,   n,   n,    l,    n,    n,    n,    n,    n,   l,   n,   n,   n,   n,   # IE2
-              l,  l,  l,  n,  m,  m,  n,    n,   n,   n,   h,   n,   n,   n,   n,    n,    h,    n,    n,    n,    n,   n,   h,   n,   n,   n,   # IC1
-              l,  l,  n,  m,  m,  n,    n,   n,   n,   n,   h,   n,   n,   n,    n,    n,    h,    n,    n,    n,   n,   n,   h,   n,   n,   # IC2
-              l,  n,  n,  n,  h,    n,   n,   n,   n,   n,   h,   n,   n,    n,    n,    n,    h,    n,    n,   n,   n,   n,   h,   n,   # IS1
-              n,  n,  n,  n,    h,   n,   n,   n,   n,   n,   h,   n,    n,    n,    n,    n,    h,    n,   n,   n,   n,   n,   h,   # IS2
-              l,  l,  n,    n,   l,   l,   n,   n,   n,   n,   l,    l,    n,    n,    n,    n,    l,   n,   n,   n,   n,   n,   # TSK
-              l,  n,    n,   n,   n,   m,   m,   n,   n,   n,    n,    m,    m,    n,    n,    n,   n,   m,   m,   n,   n,   # PCS
-              n,    n,   n,   n,   m,   m,   n,   n,   n,    n,    m,    m,    n,    n,    n,   n,   m,   m,   n,   n,   # FPQ
-              n,   n,   n,   n,   n,   m,   n,   n,    n,    n,    n,    m,    n,    n,   n,   n,   n,   m,   n,   # vHISS
-              n,   n,   n,   n,   n,   m,   n,    n,    n,    n,    n,    m,    n,   n,   n,   n,   n,   m,   # AMAS
-              n,   n,   n,   n,   n,   m,    n,    n,    n,    n,    n,    m,   n,   n,   n,   n,   n,   # HRE1
-              n,   n,   n,   n,   n,    m,    n,    n,    n,    n,    n,   m,   n,   n,   n,   n,   # HRE2
-              n,   n,   n,   n,    n,    m,    n,    n,    n,    n,   n,   m,   n,   n,   n,   # HRC1
-              n,   n,   n,    n,    n,    m,    n,    n,    n,   n,   n,   m,   n,   n,   # HRC2
-              n,   n,    n,    n,    n,    m,    n,    n,   n,   n,   n,   m,   n,   # HRS1
-              n,    n,    n,    n,    n,    m,    n,   n,   n,   n,   n,   m,   # HRS2
-              n,    n,    n,    n,    n,    m,   n,   n,   n,   n,   n,   # HRVE1
-              n,    n,    n,    n,    n,   m,   n,   n,   n,   n,   # HRVE2
-              n,    n,    n,    n,   n,   m,   n,   n,   n,   # HRVC1
-              n,    n,    n,   n,   n,   m,   n,   n,   # HRVC2
-              n,    n,   n,   n,   n,   m,   n,   # HRVS1
-              n,   n,   n,   n,   n,   m,   # HRVS2
-              n,   n,   n,   n,   n,   # RRE1
-              n,   n,   n,   n,   # RRE2
-              n,   n,   n,   # RRC1
-              n,   n,   # RRC2
-              n)   # RRS1
-    # RRS2
+    #   DE1   DE2 DC1 DC2 DS1 DS2 IE1 IE2 IC1 IC2 IS1 IS2 TSK PCS FPQ vHISS AMAS  HRE1  HRE2  HRC1  HRC2  HRS1  HRS2  HRVE1 HRVE2 HRVC1 HRVC2 HRVS1 HRVS2 RRE1  RRE2  RRC1  RRC2  RRS1  RRS2
+    rho <- c( h,  n,  n,  n,  n,  n,  n,  n,  n,  n,  n,  l,  n,  n,  n,    n,    h,    n,    n,    n,    n,    n,    n,    n,    n,    n,    n,    n,    h,    n,    n,    n,    n,    n,   # DE1
+                  n,  n,  n,  n,  n,  n,  n,  n,  n,  n,  l,  n,  n,  n,    n,    n,    h,    n,    n,    n,    n,    n,    n,    n,    n,    n,    n,    n,    h,    n,    n,    n,    n,   # DE2
+                      n,  n,  n,  n,  n,  h,  n,  n,  n,  n,  h,  h,  n,    n,    n,    n,    h,    n,    n,    n,    n,    n,    h,    n,    n,    n,    n,    n,    h,    n,    n,    n,   # DC1
+                          n,  n,  n,  n,  n,  h,  n,  n,  n,  h,  h,  n,    n,    n,    n,    n,    h,    n,    n,    n,    n,    n,    h,    n,    n,    n,    n,    n,    h,    n,    n,   # DC2
+                              n,  n,  n,  n,  n,  h,  n,  n,  n,  n,  h,    n,    n,    n,    n,    n,    h,    n,    n,    n,    n,    n,    h,    n,    n,    n,    n,    n,    h,    n,   # DS1
+                                  n,  n,  n,  n,  n,  h,  n,  n,  n,  n,    h,    n,    n,    n,    n,    n,    h,    n,    n,    n,    n,    n,    h,    n,    n,    n,    n,    n,    h,   # DS2
+                                      l,  l,  l,  l,  l,  m,  n,  n,  n,    n,    l,    n,    n,    n,    n,    n,    l,    n,    n,    n,    n,    n,    l,    n,    n,    n,    n,    n,   # IE1
+                                          l,  l,  l,  l,  m,  n,  n,  n,    n,    n,    l,    n,    n,    n,    n,    n,    l,    n,    n,    n,    n,    n,    l,    n,    n,    n,    n,   # IE2
+                                              l,  l,  l,  n,  m,  m,  n,    n,    n,    n,    h,    n,    n,    n,    n,    n,    h,    n,    n,    n,    n,    n,    h,    n,    n,    n,   # IC1
+                                                  l,  l,  n,  m,  m,  n,    n,    n,    n,    n,    h,    n,    n,    n,    n,    n,    h,    n,    n,    n,    n,    n,    h,    n,    n,   # IC2
+                                                      l,  n,  n,  n,  h,    n,    n,    n,    n,    n,    h,    n,    n,    n,    n,    n,    h,    n,    n,    n,    n,    n,    h,    n,   # IS1
+                                                          n,  n,  n,  n,    h,    n,    n,    n,    n,    n,    h,    n,    n,    n,    n,    n,    h,    n,    n,    n,    n,    n,    h,   # IS2
+                                                              l,  l,  n,    n,    l,    l,    n,    n,    n,    n,    l,    l,    n,    n,    n,    n,    l,    n,    n,    n,    n,    n,   # TSK
+                                                                  l,  n,    n,    n,    n,    m,    m,    n,    n,    n,    n,    m,    m,    n,    n,    n,    n,    m,    m,    n,    n,   # PCS
+                                                                      n,    n,    n,    n,    m,    m,    n,    n,    n,    n,    m,    m,    n,    n,    n,    n,    m,    m,    n,    n,   # FPQ
+                                                                            n,    n,    n,    n,    n,    m,    n,    n,    n,    n,    n,    m,    n,    n,    n,    n,    n,    m,    n,   # vHISS
+                                                                                  n,    n,    n,    n,    n,    m,    n,    n,    n,    n,    n,    m,    n,    n,    n,    n,    n,    m,   # AMAS
+                                                                                        n,    n,    n,    n,    n,    m,    n,    n,    n,    n,    n,    m,    n,    n,    n,    n,    n,   # HRE1
+                                                                                              n,    n,    n,    n,    n,    m,    n,    n,    n,    n,    n,    m,    n,    n,    n,    n,   # HRE2
+                                                                                                    n,    n,    n,    n,    n,    m,    n,    n,    n,    n,    n,    m,    n,    n,    n,   # HRC1
+                                                                                                          n,    n,    n,    n,    n,    m,    n,    n,    n,    n,    n,    m,    n,    n,   # HRC2
+                                                                                                                n,    n,    n,    n,    n,    m,    n,    n,    n,    n,    n,    m,    n,   # HRS1
+                                                                                                                      n,    n,    n,    n,    n,    m,    n,    n,    n,    n,    n,    m,   # HRS2
+                                                                                                                            n,    n,    n,    n,    n,    m,    n,    n,    n,    n,    n,   # HRVE1
+                                                                                                                                  n,    n,    n,    n,    n,    m,    n,    n,    n,    n,   # HRVE2
+                                                                                                                                        n,    n,    n,    n,    n,    m,    n,    n,    n,   # HRVC1
+                                                                                                                                              n,    n,    n,    n,    n,    m,    n,    n,   # HRVC2
+                                                                                                                                                    n,    n,    n,    n,    n,    m,    n,   # HRVS1
+                                                                                                                                                          n,    n,    n,    n,    n,    m,   # HRVS2
+                                                                                                                                                                n,    n,    n,    n,    n,   # RRE1
+                                                                                                                                                                      n,    n,    n,    n,   # RRE2
+                                                                                                                                                                            n,    n,    n,   # RRC1
+                                                                                                                                                                                  n,    n,   # RRC2
+                                                                                                                                                                                        n)   # RRS1
+                                                                                                                                                                                             # RRS2
     
     # define variable names
     vars <- c("DE1", "DE2", "DC1", "DC2", "DS1", "DS2", "IE1", "IE2", "IC1", "IC2", "IS1", "IS2",
@@ -149,6 +149,7 @@ p <- ggplot(POWER, aes(x=S)) +
   geom_hline(yintercept = 0.80, linetype = "dashed", col = "black") +
   geom_vline(xintercept = required_n_95, linetype = "dashed", col = "red") +
   geom_vline(xintercept = required_n_80, linetype = "dashed", col = "black") +
+  ylim(0, 1.1) +
   geom_label( label=paste("n80=\n", as.character(required_n_80), sep = ""), 
               x=required_n_80, y=0.90, size =2,
               label.padding = unit(0.55, "lines"), label.size = 0.35,
