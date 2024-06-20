@@ -3,7 +3,7 @@ This repository contains the a priori simulation studies for the PainMOD project
 
 Sample Size Estimation for Study 1 (=Work Package 1)
 
-<img src="https://github.com/LoefflerMartin/PainMOD_Simulation_Study/assets/95685062/48ddf555-5fb3-41a8-8ccc-1a6d212639c7" width="500">
+<img src="https://github.com/LoefflerMartin/PainMOD_Simulation_Study/assets/95685062/06f64c92-ee35-4bff-a8c1-2d754f487337" width="500">
 
 Sample Size Estimation for Study 2 (=Work Package 2)
 
